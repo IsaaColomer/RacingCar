@@ -100,11 +100,11 @@ class myCurva :public Primitive
 {
 public:
 	myCurva();
-	myCurva(float x, float y, float z,float w, float r, float a);
+	myCurva(float x, float y, float z,float s, float r, float a);
 	void InnerRender() const;
 public:
 	vec3 center;
-	float width;
+	float size;
 	float radius;
 	float angle;
 };
