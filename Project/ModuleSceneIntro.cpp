@@ -92,8 +92,8 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	myCurva pa(0, 0, 0, 10, 5, 180);
 	pa.wire = false;
-	pa.color = White;
-	pa.SetPos(50, 0, 50);
+	pa.color = Green;
+	pa.SetPos(20, 0, 40);
 	pa.Render();
 
 	return UPDATE_CONTINUE;
