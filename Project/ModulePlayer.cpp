@@ -119,7 +119,13 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
+		int a;
 		acceleration = MAX_ACCELERATION;
+		if (vehicle->GetKmh() < 70)
+		{
+			a = MAX_ACCELERATION + 1000;
+			acceleration = a;
+		}
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -136,7 +142,13 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
+		int b;
 		acceleration = -MAX_ACCELERATION;
+		if (vehicle->GetKmh() > 10)
+		{
+			b = -MAX_ACCELERATION - 4000;
+			acceleration = b;
+		}
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
@@ -165,7 +177,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h", acceleration, vehicle->GetKmh());
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

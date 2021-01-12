@@ -39,7 +39,7 @@ void PhysVehicle3D::Render()
 	}
 
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
-	Cube smallChassis(info.chassis_size.x-1, info.chassis_size.y+0.1, info.chassis_size.z);
+	Cube smallChassis(info.chassis_size.x-1, info.chassis_size.y+0.1, info.chassis_size.z-1);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&smallChassis.transform);
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
