@@ -45,7 +45,6 @@ bool ModuleSceneIntro::Start()
 	cube6 = App->physics->AddBody(c6,0);
 	cube7 = App->physics->AddBody(c7,0);
 	cube8 = App->physics->AddBody(c8,0);
-	cube9 = App->physics->AddBody(c9,0);
 	rampp2 = App->physics->AddBody(ramp2,0);
 	cube9 = App->physics->AddBody(c9, 0);
 	cube10 = App->physics->AddBody(c10, 0);
