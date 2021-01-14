@@ -150,6 +150,7 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = b;
 		}
 	}
+	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -174,10 +175,16 @@ update_status ModulePlayer::Update(float dt)
 
 	App->camera->LookAt(carpos);
 
+	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 0.4f)
+	{
+		vehicle->SetPos(0, 3, 10);
+		acceleration = 0;
+	}
+
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h", acceleration, vehicle->GetKmh());
+	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY());
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
