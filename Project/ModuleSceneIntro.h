@@ -59,6 +59,8 @@ public:
 
 	PhysBody3D* rampp2;
 
+	PhysBody3D* cube10;
+
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 };
