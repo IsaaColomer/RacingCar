@@ -49,15 +49,15 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
 
-	Cube secondChassis(info.secondChassis_size.x+5, info.secondChassis_size.y+1, info.secondChassis_size.z+0);
+	Cube secondChassis(info.secondChassis_size.x, info.secondChassis_size.y, info.secondChassis_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&secondChassis.transform);
 	btVector3 secondOffset(info.secondChassis_offset.x, info.secondChassis_offset.y, info.secondChassis_offset.z);
 	secondOffset = secondOffset.rotate(q.getAxis(), q.getAngle());
 	secondChassis.color.Set(0.50f, 0.39f, 0.52f,1.0f);
 
-	secondChassis.transform.M[12] += offset.getX();
-	secondChassis.transform.M[13] += offset.getY();
-	secondChassis.transform.M[14] += offset.getZ();
+	secondChassis.transform.M[12] += secondOffset.getX();
+	secondChassis.transform.M[13] += secondOffset.getY();
+	secondChassis.transform.M[14] += secondOffset.getZ();
 
 	chassis.Render();
 	secondChassis.Render();

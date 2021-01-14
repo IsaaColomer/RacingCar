@@ -23,6 +23,10 @@ bool ModulePlayer::Start()
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 1, 4);
 	car.chassis_offset.Set(0, 1, 0);
+
+	car.secondChassis_size.Set(1, 1, 1);
+	car.secondChassis_offset.Set(1, 1.5, 1);
+
 	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
@@ -117,6 +121,8 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	//Conseguir la direccion del coche para aplicar torque
+	fVector = vehicle->vehicle->getForwardVector();
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		int a;
@@ -134,13 +140,16 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
+	{/*Apliquem torque al girar, només actua a l'aire es el fVector que hem trobat
+		abans al principi de l'update multiplicat per la força que apliquem, en negatiu cap a l'esquerra*/
+		vehicle->body->applyTorque(fVector * -300);
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
+		vehicle->body->applyTorque(fVector * 300);
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
