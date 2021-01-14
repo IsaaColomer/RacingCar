@@ -99,7 +99,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(0, 21, 10);
 	
 	return true;
 }
@@ -126,6 +126,11 @@ update_status ModulePlayer::Update(float dt)
 			a = MAX_ACCELERATION + 1000;
 			acceleration = a;
 		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	{
+		vehicle->SetPos(0, 21, 12);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -175,11 +180,11 @@ update_status ModulePlayer::Update(float dt)
 
 	App->camera->LookAt(carpos);
 
-	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 0.4f)
+	/*if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 0.4f)
 	{
 		vehicle->SetPos(0, 3, 10);
 		acceleration = 0;
-	}
+	}*/
 
 	vehicle->Render();
 
