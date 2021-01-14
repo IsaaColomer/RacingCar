@@ -31,6 +31,7 @@ bool ModuleSceneIntro::Start()
 	Cube c9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube c10(200, 2, 20);
+	Cube c11(15, 2, -100);
 
 
 	ramp1.SetRotation(-20, { 1,0,0 });
@@ -48,6 +49,7 @@ bool ModuleSceneIntro::Start()
 	rampp2 = App->physics->AddBody(ramp2,0);
 	cube9 = App->physics->AddBody(c9, 0);
 	cube10 = App->physics->AddBody(c10, 0);
+	cube11 = App->physics->AddBody(c11, 0);
 
 	cube->SetPos(0, 40, 0);
 	cube2->SetPos(0, 40, 100);
@@ -60,6 +62,7 @@ bool ModuleSceneIntro::Start()
 	cube9->SetPos(-175, 40, 160);
 	rampp2->SetPos(-210, 43, 160);
 	cube10->SetPos(-350, 20, 160);
+	cube11->SetPos(-380, 20, 105);
 
 	return ret;
 }
@@ -87,6 +90,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube cube_road9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube cube_road10(200, 2, 20);
+	Cube cube_road11(15, 2, -100);
 
 	p.axis = true;
 	p.Render();
@@ -147,6 +151,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube_road10.SetPos(-350, 20, 160);
 	cube_road10.color = Blue;
 	cube_road10.Render();
+
+	cube_road11.wire = false;
+	cube_road11.SetPos(-380, 20, 105);
+	cube_road11.color = Blue;
+	cube_road11.Render();
 
 
 	myCurva pa(0, 0, 0, 10, 5, 180);
