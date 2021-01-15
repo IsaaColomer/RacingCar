@@ -127,7 +127,8 @@ update_status ModulePlayer::Update(float dt)
 	fVector = vehicle->vehicle->getForwardVector();
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		vehicle->body->applyImpulse(fVector, );
+		//vehicle->vehicle->;
+		//vehicle->body->applyImpulse(fVector, );
 		int a;
 		acceleration = MAX_ACCELERATION;
 		if (vehicle->GetKmh() < 70)
@@ -136,7 +137,6 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = a;
 		}
 	}
-
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
@@ -197,10 +197,10 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->SetPos(0, 63, 10);
 	acceleration = 0;
 	//BREAK
-	for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+	/*for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
 	{
 		vehicle->vehicle->setBrake(500, i);
-	}
+	}*/
 		vehicle->vehicle->resetSuspension();
 	if (vehicle->body->getLinearVelocity() != 0)
 	{
