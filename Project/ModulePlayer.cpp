@@ -103,7 +103,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 46, 10);
+	vehicle->SetPos(0, 63, 10);
 	
 	return true;
 }
@@ -136,7 +136,20 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
 	{
-		vehicle->SetPos(0, 46, 12);
+		vehicle->SetPos(0, 63, 10);
+		acceleration = 0;
+		//BREAK
+		for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+		{
+			vehicle->vehicle->setBrake(500, i);
+		}
+		vehicle->vehicle->resetSuspension();
+		if (vehicle->body->getLinearVelocity() != 0)
+		{
+			vehicle->body->setAngularVelocity({ 0,0,0 });
+		}
+		if (vehicle->GetKmh() != 0)
+			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -164,7 +177,6 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = b;
 		}
 	}
-	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -189,16 +201,28 @@ update_status ModulePlayer::Update(float dt)
 
 	App->camera->LookAt(carpos);
 
-	/*if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 0.4f)
+	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
 	{
-		vehicle->SetPos(0, 3, 10);
-		acceleration = 0;
-	}*/
+		vehicle->SetPos(0, 63, 10);
+	acceleration = 0;
+	//BREAK
+	for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+	{
+		vehicle->vehicle->setBrake(500, i);
+	}
+	vehicle->vehicle->resetSuspension();
+	if (vehicle->body->getLinearVelocity() != 0)
+	{
+		vehicle->body->setAngularVelocity({ 0,0,0 });
+	}
+	if (vehicle->GetKmh() != 0)
+		vehicle->body->setLinearVelocity({ 0,0,0 });
+	}
 
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY());
+	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y | UP AXIS: %d", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY(), vehicle->vehicle->getUpAxis());
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
