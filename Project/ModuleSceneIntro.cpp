@@ -34,12 +34,18 @@ bool ModuleSceneIntro::Start()
 	Cube c11(200, 2, 20);
 	Cube c12(170, 60, 2);
 	Cube c13(170, 2, 20);
-	Cube c14(220, 2, 20);
+	Cube c14(240, 2, 20);
+	Cube c15(200, 2, 20);
+	Cube c16(10, 2, 200);
+	Cube c17(100, 2, 50);
 	//Cylinder cyl1(20, 20);
 
 	ramp1.SetRotation(-20, { 1,0,0 });
 	ramp2.SetRotation(-20, { 0,0,1 });
 	c13.SetRotation(20, { 0,0,1 });
+	c15.SetRotation(5, { 0,0,1 });
+	c16.SetRotation(10, { 1,0,0 });
+	c17.SetRotation(30, { 1,0,0 });
 	//cyl1.SetRotation(-90,{0, 1, 0});
 	
 	cube = App->physics->AddBody(c1,0);
@@ -57,6 +63,9 @@ bool ModuleSceneIntro::Start()
 	cube12 = App->physics->AddBody(c12, 0);
 	cube13 = App->physics->AddBody(c13, 0);
 	cube14 = App->physics->AddBody(c14, 0);
+	cube15 = App->physics->AddBody(c15, 0);
+	cube16 = App->physics->AddBody(c16, 0);
+	cube17 = App->physics->AddBody(c17, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
 	
 
@@ -75,6 +84,10 @@ bool ModuleSceneIntro::Start()
 	cube12->SetPos(-330, 50, 150);
 	cube13->SetPos(-250, 40, 140);
 	cube14->SetPos(-100, 40, 140);
+	cube15->SetPos(-40, 42, 140);
+	cube16->SetPos(52, 56, 92);
+	cube17->SetPos(0, 70, -30);
+	//cube16->SetPos(-40, 42, 140);
 	//cylinder1->SetPos(0, 60, 100);
 
 	return ret;
@@ -106,7 +119,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube cube_road11(200, 2, 20);
 	Cube cube_road12(170, 60, 2);
 	Cube cube_road13(170, 2, 20);
-	Cube cube_road14(220, 2, 20);
+	Cube cube_road14(110, 2, 20);
+	Cube cube_road15(200, 2, 20);
+	Cube cube_road16(10, 2, 200);
+	Cube cube_road17(100, 2, 50);
 	//Cylinder cylinder_jump(20,20);
 
 	p.axis = true;
@@ -189,6 +205,25 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube_road14.SetPos(-100, 40, 140);
 	cube_road14.color = White;
 	cube_road14.Render();
+
+	cube_road15.SetRotation(5, { 0,0,1 });
+	cube_road15.wire = false;
+	cube_road15.SetPos(-40, 42, 140);
+	cube_road15.color = White;
+	cube_road15.Render();
+
+	cube_road16.SetRotation(10, { 1,0,0 });
+	cube_road16.wire = false;
+	cube_road16.SetPos(52, 56, 92);
+	cube_road16.color = White;
+	cube_road16.Render();
+
+	cube_road17.SetRotation(30, { 1,0,0 });
+	cube_road17.wire = false;
+	cube_road17.SetPos(0, 70, -30);
+	cube_road17.color = Red;
+	cube_road17.Render();
+
 	//cylinder_jump.wire = false;
 	//cylinder_jump.SetPos(0, 60, 100);
 	//cylinder_jump.SetRotation(-90, { 0,1,0 });
