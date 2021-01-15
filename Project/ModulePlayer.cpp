@@ -105,7 +105,7 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 63, 10);
 
-	quat = vehicle->vehicle->getChassisWorldTransform().getRotation();
+	vehicle->startQuat = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	
 	return true;
 }
@@ -138,7 +138,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
-		vehicle->restarted = true;
+		vehicle->restart = true;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)

@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Bullet/include/btBulletDynamicsCommon.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -49,7 +50,6 @@ public:
 	~PhysVehicle3D();
 
 	void Render();
-	void ResetPos(btQuaternion quat);
 	void ApplyEngineForce(float force);
 	void Brake(float force);
 	void Turn(float degrees);
@@ -57,4 +57,6 @@ public:
 public:
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+	btQuaternion startQuat;
+	bool restart = false;
 };

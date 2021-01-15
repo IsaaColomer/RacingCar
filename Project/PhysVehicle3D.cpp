@@ -22,16 +22,6 @@ PhysVehicle3D::~PhysVehicle3D()
 	delete vehicle;
 }
 
-void PhysVehicle3D::ResetPos(btQuaternion quat)
-{
-	SetPos(0, 61, 10);
-
-	vehicle->resetSuspension();
-	body->setAngularVelocity({ 0,0,0 });
-	body->setLinearVelocity({ 0,0,0 });
-	restarted = false;
-}
-
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Render()
 {
@@ -60,6 +50,25 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
+
+	if (restart)
+	{
+		restart = false;
+		SetPos(0, 61, 10);
+		vehicle->resetSuspension();
+		body->setAngularVelocity({ 0,0,0 });
+		body->setLinearVelocity({ 0,0,0 });
+
+		btQuaternion q1 = vehicle->getChassisWorldTransform().getRotation();
+		btQuaternion q2 = startQuat - q1;
+		offset = offset.rotate(q2.getAxis(), q2.getAngle());
+
+		chassis.transform.M[12] += offset.getX();
+		chassis.transform.M[13] += offset.getY();
+		chassis.transform.M[14] += offset.getZ();
+
+	}
+	
 
 	Cube secondChassis(info.secondChassis_size.x, info.secondChassis_size.y, info.secondChassis_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&secondChassis.transform);
