@@ -134,21 +134,25 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT && restarted == false)
 	{
+		restarted = !restarted;
 		vehicle->SetPos(0, 63, 10);
 		acceleration = 0;
 		//BREAK
-		for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+		if (restarted == false)
 		{
-			vehicle->vehicle->setBrake(500, i);
+			for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+			{
+				vehicle->vehicle->setBrake(500, i);
+			}
 		}
 		vehicle->vehicle->resetSuspension();
-		if (vehicle->body->getLinearVelocity() != 0)
+		if (vehicle->body->getLinearVelocity() != 0 && restarted == false)
 		{
 			vehicle->body->setAngularVelocity({ 0,0,0 });
 		}
-		if (vehicle->GetKmh() != 0)
+		if (vehicle->GetKmh() != 0 && restarted == false)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
 
@@ -201,23 +205,23 @@ update_status ModulePlayer::Update(float dt)
 
 	App->camera->LookAt(carpos);
 
-	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
-	{
-		vehicle->SetPos(0, 63, 10);
-	acceleration = 0;
-	//BREAK
-	for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
-	{
-		vehicle->vehicle->setBrake(500, i);
-	}
-	vehicle->vehicle->resetSuspension();
-	if (vehicle->body->getLinearVelocity() != 0)
-	{
-		vehicle->body->setAngularVelocity({ 0,0,0 });
-	}
-	if (vehicle->GetKmh() != 0)
-		vehicle->body->setLinearVelocity({ 0,0,0 });
-	}
+	//if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
+	//{
+	//	vehicle->SetPos(0, 63, 10);
+	//acceleration = 0;
+	////BREAK
+	//for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
+	//{
+	//	vehicle->vehicle->setBrake(500, i);
+	//}
+	//vehicle->vehicle->resetSuspension();
+	//if (vehicle->body->getLinearVelocity() != 0)
+	//{
+	//	vehicle->body->setAngularVelocity({ 0,0,0 });
+	//}
+	//if (vehicle->GetKmh() != 0)
+	//	vehicle->body->setLinearVelocity({ 0,0,0 });
+	//}
 
 	vehicle->Render();
 
