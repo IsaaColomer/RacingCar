@@ -127,7 +127,7 @@ update_status ModulePlayer::Update(float dt)
 	fVector = vehicle->vehicle->getForwardVector();
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		vehicle->body->applyCentralImpulse(fVector);
+		vehicle->body->applyImpulse(fVector, );
 		int a;
 		acceleration = MAX_ACCELERATION;
 		if (vehicle->GetKmh() < 70)
