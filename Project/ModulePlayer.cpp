@@ -134,7 +134,7 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT && restarted == false)
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
 	{
 		restarted = !restarted;
 		vehicle->SetPos(0, 63, 10);

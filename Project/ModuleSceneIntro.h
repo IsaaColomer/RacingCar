@@ -62,9 +62,13 @@ public:
 
 	PhysBody3D* cube11;
 
+	PhysBody3D* cube12;
+
+	PhysBody3D* cube13;
+
 	//PhysBody3D* cube1;
 
-	PhysBody3D* cylinder1;
+//	PhysBody3D* cylinder1;
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;

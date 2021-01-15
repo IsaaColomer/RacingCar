@@ -20,7 +20,7 @@ public:
 	bool CleanUp();
 
 public:
-	bool restarted = false;
+	bool restarted = true;
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
