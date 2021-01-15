@@ -66,6 +66,8 @@ public:
 
 	PhysBody3D* cube13;
 
+	PhysBody3D* cube14;
+
 	//PhysBody3D* cube1;
 
 //	PhysBody3D* cylinder1;

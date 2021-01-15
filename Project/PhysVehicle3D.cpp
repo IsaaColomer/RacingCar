@@ -1,5 +1,7 @@
 #include "PhysVehicle3D.h"
 #include "Primitive.h"
+#include "Application.h"
+#include "ModulePlayer.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
 // ----------------------------------------------------------------------------
@@ -18,6 +20,16 @@ PhysVehicle3D::PhysVehicle3D(btRigidBody* body, btRaycastVehicle* vehicle, const
 PhysVehicle3D::~PhysVehicle3D()
 {
 	delete vehicle;
+}
+
+void PhysVehicle3D::ResetPos(btQuaternion quat)
+{
+	SetPos(0, 61, 10);
+
+	vehicle->resetSuspension();
+	body->setAngularVelocity({ 0,0,0 });
+	body->setLinearVelocity({ 0,0,0 });
+	restarted = false;
 }
 
 // ----------------------------------------------------------------------------

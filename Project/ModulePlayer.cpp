@@ -104,6 +104,8 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 63, 10);
+
+	quat = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	
 	return true;
 }
@@ -134,26 +136,9 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
-		restarted = !restarted;
-		vehicle->SetPos(0, 63, 10);
-		acceleration = 0;
-		//BREAK
-		if (restarted == false)
-		{
-			for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
-			{
-				vehicle->vehicle->setBrake(500, i);
-			}
-		}
-		vehicle->vehicle->resetSuspension();
-		if (vehicle->body->getLinearVelocity() != 0 && restarted == false)
-		{
-			vehicle->body->setAngularVelocity({ 0,0,0 });
-		}
-		if (vehicle->GetKmh() != 0 && restarted == false)
-			vehicle->body->setLinearVelocity({ 0,0,0 });
+		vehicle->restarted = true;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)

@@ -34,6 +34,7 @@ bool ModuleSceneIntro::Start()
 	Cube c11(200, 2, 20);
 	Cube c12(170, 60, 2);
 	Cube c13(170, 2, 20);
+	Cube c14(220, 2, 20);
 	//Cylinder cyl1(20, 20);
 
 	ramp1.SetRotation(-20, { 1,0,0 });
@@ -55,6 +56,7 @@ bool ModuleSceneIntro::Start()
 	cube11 = App->physics->AddBody(c11, 0);
 	cube12 = App->physics->AddBody(c12, 0);
 	cube13 = App->physics->AddBody(c13, 0);
+	cube14 = App->physics->AddBody(c14, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
 	
 
@@ -72,6 +74,7 @@ bool ModuleSceneIntro::Start()
 	cube11->SetPos(-350, 40, 140);
 	cube12->SetPos(-330, 50, 150);
 	cube13->SetPos(-250, 40, 140);
+	cube14->SetPos(-100, 40, 140);
 	//cylinder1->SetPos(0, 60, 100);
 
 	return ret;
@@ -103,6 +106,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube cube_road11(200, 2, 20);
 	Cube cube_road12(170, 60, 2);
 	Cube cube_road13(170, 2, 20);
+	Cube cube_road14(220, 2, 20);
 	//Cylinder cylinder_jump(20,20);
 
 	p.axis = true;
@@ -180,6 +184,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube_road13.SetPos(-250, 40, 140);
 	cube_road13.color = White;
 	cube_road13.Render();
+
+	cube_road14.wire = false;
+	cube_road14.SetPos(-100, 40, 140);
+	cube_road14.color = White;
+	cube_road14.Render();
 	//cylinder_jump.wire = false;
 	//cylinder_jump.SetPos(0, 60, 100);
 	//cylinder_jump.SetRotation(-90, { 0,1,0 });

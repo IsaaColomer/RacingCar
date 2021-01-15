@@ -49,12 +49,12 @@ public:
 	~PhysVehicle3D();
 
 	void Render();
+	void ResetPos(btQuaternion quat);
 	void ApplyEngineForce(float force);
 	void Brake(float force);
 	void Turn(float degrees);
 	float GetKmh() const;
 public:
-
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
 };
