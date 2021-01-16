@@ -140,6 +140,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
+		vehicle->SetPos(-60, 44, 133);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -159,7 +160,6 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		
 		int b;
 		acceleration = -MAX_ACCELERATION;
 		if (vehicle->GetKmh() > 10)
