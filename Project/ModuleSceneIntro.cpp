@@ -25,9 +25,9 @@ bool ModuleSceneIntro::Start()
 	Cube c3(10,2,100);
 	Cube c4(100,2,10);
 	Cube ramp1(10, 10, 20);
-	Cube c6(20, 2, 20);
-	Cube c7(20, 2, 20);
-	Cube c8(20, 2, 20);
+	Cube c6(10, 2, 10);
+	Cube c7(10, 2, 10);
+	Cube c8(17, 2, 17);
 	Cube c9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube c10(200, 2, 20);
@@ -38,9 +38,17 @@ bool ModuleSceneIntro::Start()
 	Cube c15(200, 2, 20);
 	Cube c16(10, 2, 200);
 	Cube c17(100, 2, 50);
-	Cube column1(2, 6, 2);
+	Cube column1(2, 8, 2);
 	Cube column2(2, 8, 2);
 	Cube column3(2, 8, 2);
+	Cube column4(2, 8, 2);
+	Cube column5(2, 8, 2);
+	Cube column6(2, 8, 2);
+	Cube column7(2, 8, 2);
+	Cube column8(2, 8, 2);
+	Cube column9(2, 8, 2);
+	Cube column10(2, 8, 2);
+	Cube column11(2, 8, 2);
 	//Cylinder cyl1(20, 20);
 
 	ramp1.SetRotation(-20, { 1,0,0 });
@@ -51,6 +59,14 @@ bool ModuleSceneIntro::Start()
 	c17.SetRotation(30, { 1,0,0 });
 	column1.SetRotation(10, {0,1,0});
 	column2.SetRotation(10, {0,1,0});
+	column4.SetRotation(10, {0,1,0});
+	column5.SetRotation(-10, {1,0,0});
+	column6.SetRotation(-10, {1,0,0});
+	column7.SetRotation(-10, {1,0,0});
+	column8.SetRotation(10, {1,0,0});
+	column9.SetRotation(10, {1,0,0});
+	column10.SetRotation(10, {1,0,0});
+	column11.SetRotation(5, {1,0,0});
 	//cyl1.SetRotation(-90,{0, 1, 0});
 	
 	cube = App->physics->AddBody(c1,0);
@@ -74,6 +90,14 @@ bool ModuleSceneIntro::Start()
 	column01 = App->physics->AddBody(column1, 0);
 	column02 = App->physics->AddBody(column2, 0);
 	column03 = App->physics->AddBody(column3, 0);
+	column04 = App->physics->AddBody(column4, 0);
+	column05 = App->physics->AddBody(column5, 0);
+	column06 = App->physics->AddBody(column6, 0);
+	column07 = App->physics->AddBody(column7, 0);
+	column08 = App->physics->AddBody(column8, 0);
+	column09 = App->physics->AddBody(column9, 0);
+	column010 = App->physics->AddBody(column10, 0);
+	column011 = App->physics->AddBody(column11, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
 	
 
@@ -97,7 +121,15 @@ bool ModuleSceneIntro::Start()
 	cube17->SetPos(0, 70, -30);
 	column01->SetPos(-76, 42, 140);
 	column02->SetPos(0, 50, 135);
-	column03->SetPos(0, 50, 150);
+	column03->SetPos(0, 50, 147);
+	column04->SetPos(-60, 44, 133);
+	column05->SetPos(-60, 44, 143);
+	column06->SetPos(-50, 46, 138);
+	column07->SetPos(-40, 46, 144);
+	column08->SetPos(-40, 46, 134);
+	column09->SetPos(-25, 46, 140);
+	column010->SetPos(-13, 48, 140);
+	column011->SetPos(20, 50, 140);
 	//cube16->SetPos(-40, 42, 140);
 	//cylinder1->SetPos(0, 60, 100);
 
@@ -121,9 +153,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube cube_road3(10,2,100);
 	Cube cube_road4(100, 2, 10);
 	Cube ramp1(10, 5, 20);
-	Cube cube_road6(20, 2, 20);
-	Cube cube_road7(20, 2, 20);
-	Cube cube_road8(20, 2, 20);
+	Cube cube_road6(10, 2, 10);
+	Cube cube_road7(10, 2, 10);
+	Cube cube_road8(17, 2, 17);
 	Cube cube_road9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube cube_road10(200, 2, 20);
@@ -138,6 +170,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube column2(2, 8, 2);
 	Cube column3(2, 8, 2);
 	Cube column4(2, 8, 2);
+	Cube column5(2, 8, 2);
+	Cube column6(2, 8, 2);
+	Cube column7(2, 8, 2);
+	Cube column8(2, 8, 2);
+	Cube column9(2, 8, 2);
+	Cube column10(2, 8, 2);
+	Cube column11(2, 8, 2);
 	//Cylinder cylinder_jump(20,20);
 
 	p.axis = true;
@@ -262,6 +301,48 @@ update_status ModuleSceneIntro::Update(float dt)
 	column4.SetPos(-60, 44, 133);
 	column4.color = Red;
 	column4.Render();
+
+	column5.SetRotation(-10, { 1,0,0 });
+	column5.wire = false;
+	column5.SetPos(-60, 44, 143);
+	column5.color = Red;
+	column5.Render();
+
+	column6.SetRotation(-10, { 1,0,0 });
+	column6.wire = false;
+	column6.SetPos(-50, 46, 138);
+	column6.color = Red;
+	column6.Render();
+
+	column7.SetRotation(-10, { 1,0,0 });
+	column7.wire = false;
+	column7.SetPos(-40, 46, 144);
+	column7.color = Red;
+	column7.Render();
+
+	column8.SetRotation(10, { 1,0,0 });
+	column8.wire = false;
+	column8.SetPos(-40, 46, 134);
+	column8.color = Red;
+	column8.Render();
+
+	column9.SetRotation(10, { 1,0,0 });
+	column9.wire = false;
+	column9.SetPos(-25, 46, 140);
+	column9.color = Red;
+	column9.Render();
+
+	column10.SetRotation(10, { 1,0,0 });
+	column10.wire = false;
+	column10.SetPos(-13, 48, 140);
+	column10.color = Red;
+	column10.Render();
+
+	column11.SetRotation(5, { 1,0,0 });
+	column11.wire = false;
+	column11.SetPos(20, 50, 140);
+	column11.color = Red;
+	column11.Render();
 
 	//cylinder_jump.wire = false;
 	//cylinder_jump.SetPos(0, 60, 100);

@@ -103,7 +103,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 63, 10);
+	vehicle->SetPos(-60, 44, 133);
 
 	vehicle->startQuat = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	
@@ -140,6 +140,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
+		vehicle->SetPos(-60, 44, 133);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)

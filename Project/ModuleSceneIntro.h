@@ -77,6 +77,14 @@ public:
 	PhysBody3D* column01;
 	PhysBody3D* column02;
 	PhysBody3D* column03;
+	PhysBody3D* column04;
+	PhysBody3D* column05;
+	PhysBody3D* column06;
+	PhysBody3D* column07;
+	PhysBody3D* column08;
+	PhysBody3D* column09;
+	PhysBody3D* column010;
+	PhysBody3D* column011;
 
 	//PhysBody3D* cube1;
 
