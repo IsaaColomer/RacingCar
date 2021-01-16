@@ -25,8 +25,8 @@ bool ModuleSceneIntro::Start()
 	Cube c3(10,2,100);
 	Cube c4(100,2,10);
 	Cube ramp1(10, 10, 20);
-	Cube c6(10, 2, 10);
-	Cube c7(10, 2, 10);
+	Cube c6(17, 2, 17);
+	Cube c7(17, 2, 17);
 	Cube c8(17, 2, 17);
 	Cube c9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
@@ -153,9 +153,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube cube_road3(10,2,100);
 	Cube cube_road4(100, 2, 10);
 	Cube ramp1(10, 5, 20);
-	Cube cube_road6(10, 2, 10);
-	Cube cube_road7(10, 2, 10);
-	Cube cube_road8(17, 2, 17);
+	Cube cube_road6(20, 2, 20);
+	Cube cube_road7(20, 2, 20);
+	Cube cube_road8(20, 2, 20);
 	Cube cube_road9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube cube_road10(200, 2, 20);
