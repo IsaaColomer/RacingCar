@@ -81,6 +81,26 @@ void PhysVehicle3D::Render()
 	lateralLChassis.transform.M[13] += lateralLOffset.getY();
 	lateralLChassis.transform.M[14] += lateralLOffset.getZ();
 
+	Cube lateralR1Chassis(info.lateralR1Chassis_size.x, info.lateralR1Chassis_size.y, info.lateralR1Chassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralR1Chassis.transform);
+	btVector3 lateralR1Offset(info.lateralR1Chassis_offset.x, info.lateralR1Chassis_offset.y, info.lateralR1Chassis_offset.z);
+	lateralR1Offset = lateralR1Offset.rotate(q.getAxis(), q.getAngle());
+	lateralR1Chassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+
+	lateralR1Chassis.transform.M[12] += lateralR1Offset.getX();
+	lateralR1Chassis.transform.M[13] += lateralR1Offset.getY();
+	lateralR1Chassis.transform.M[14] += lateralR1Offset.getZ();
+
+	Cube lateralL1Chassis(info.lateralL1Chassis_size.x, info.lateralL1Chassis_size.y, info.lateralL1Chassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralL1Chassis.transform);
+	btVector3 lateralL1Offset(info.lateralL1Chassis_offset.x, info.lateralL1Chassis_offset.y, info.lateralL1Chassis_offset.z);
+	lateralL1Offset = lateralL1Offset.rotate(q.getAxis(), q.getAngle());
+	lateralL1Chassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+
+	lateralL1Chassis.transform.M[12] += lateralL1Offset.getX();
+	lateralL1Chassis.transform.M[13] += lateralL1Offset.getY();
+	lateralL1Chassis.transform.M[14] += lateralL1Offset.getZ();
+
 	if (restart)
 	{
 		restart = false;
@@ -115,12 +135,26 @@ void PhysVehicle3D::Render()
 		lateralLChassis.transform.M[13] += lateralLOffset.getY();
 		lateralLChassis.transform.M[14] += lateralLOffset.getZ();
 
+		lateralR1Offset = lateralR1Offset.rotate(q.getAxis(), q.getAngle());
+
+		lateralR1Chassis.transform.M[12] += lateralR1Offset.getX();
+		lateralR1Chassis.transform.M[13] += lateralR1Offset.getY();
+		lateralR1Chassis.transform.M[14] += lateralR1Offset.getZ();
+
+		lateralL1Offset = lateralROffset.rotate(q.getAxis(), q.getAngle());
+
+		lateralL1Chassis.transform.M[12] += lateralL1Offset.getX();
+		lateralL1Chassis.transform.M[13] += lateralL1Offset.getY();
+		lateralL1Chassis.transform.M[14] += lateralL1Offset.getZ();
+
 	}
 	//Render del chassis parte por parte
 	chassis.Render();
 	aleronChassis.Render();
 	lateralRChassis.Render();
 	lateralLChassis.Render();
+	lateralR1Chassis.Render();
+	lateralL1Chassis.Render();
 }
 
 // ----------------------------------------------------------------------------

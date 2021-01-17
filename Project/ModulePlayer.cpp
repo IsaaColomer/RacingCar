@@ -24,14 +24,20 @@ bool ModulePlayer::Start()
 	car.chassis_size.Set(2, 0.75, 4);
 	car.chassis_offset.Set(0, 1, 0);
 
-	car.aleronChassis_size.Set(3, 0.5, 0.5);
+	car.aleronChassis_size.Set(3, 0.25, 0.5);
 	car.aleronChassis_offset.Set(0, 1.65, -2);
 
 	car.lateralRChassis_size.Set(0.5, 0.5, 3);
-	car.lateralRChassis_offset.Set(1, 1.65, 0);
+	car.lateralRChassis_offset.Set(1, 1.40, 1);
 
 	car.lateralLChassis_size.Set(0.5, 0.5, 3);
-	car.lateralLChassis_offset.Set(-1, 1.65, 0);
+	car.lateralLChassis_offset.Set(-1, 1.40, 1);
+
+	car.lateralR1Chassis_size.Set(0.5, 0.25, 4);
+	car.lateralR1Chassis_offset.Set(0.5, 1.5, 0);
+
+	car.lateralL1Chassis_size.Set(0.5, 0.25, 4);
+	car.lateralL1Chassis_offset.Set(-0.5, 1.5, 0);
 
 	car.mass = 500.0f;
 	car.suspensionStiffness = 20.88f;
