@@ -125,6 +125,7 @@ update_status ModulePlayer::Update(float dt)
 
 	//Conseguir la direccion del coche para aplicar torque
 	fVector = vehicle->vehicle->getForwardVector();
+	iVector = { 0,5900,0 };//Vector que aplica força sobre l'eix de les y per fer que si el cotxe volca es pugui tornar a possar a la posició correcte.
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		//vehicle->vehicle->;
@@ -137,6 +138,16 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = a;
 		}
 	}
+	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN && jumped == false)
+	{
+		jumped = !jumped;
+		timer.Start();
+		vehicle->body->applyCentralImpulse(iVector);
+	}
+	int time = timer.Read() / 1000;
+
+	if (time >= 4)
+		jumped = !jumped;
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
@@ -195,19 +206,16 @@ update_status ModulePlayer::Update(float dt)
 	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
 	{
 		vehicle->SetPos(0, 63, 10);
-	acceleration = 0;
-	//BREAK
-	/*for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i)
-	{
-		vehicle->vehicle->setBrake(500, i);
-	}*/
-		vehicle->vehicle->resetSuspension();
-	if (vehicle->body->getLinearVelocity() != 0)
-	{
-		vehicle->body->setAngularVelocity({ 0,0,0 });
-	}
-	if (vehicle->GetKmh() != 0)
-		vehicle->body->setLinearVelocity({ 0,0,0 });
+		//vehicle->restart = true;
+		vehicle->Turn(360);
+
+			vehicle->vehicle->resetSuspension();
+		if (vehicle->body->getLinearVelocity() != 0)
+		{
+			vehicle->body->setAngularVelocity({ 0,0,0 });
+		}
+		if (vehicle->GetKmh() != 0)
+			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
 
 	vehicle->Render();

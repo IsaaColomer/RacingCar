@@ -26,4 +26,7 @@ public:
 	float acceleration;
 	float brake;
 	btVector3 fVector;
+	btVector3 iVector;
+	bool jumped = false;
+	Timer timer;
 };
