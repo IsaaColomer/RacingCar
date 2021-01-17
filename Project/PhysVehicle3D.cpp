@@ -71,6 +71,16 @@ void PhysVehicle3D::Render()
 	lateralRChassis.transform.M[13] += lateralROffset.getY();
 	lateralRChassis.transform.M[14] += lateralROffset.getZ();
 
+	Cube lateralLChassis(info.lateralLChassis_size.x, info.lateralLChassis_size.y, info.lateralLChassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralLChassis.transform);
+	btVector3 lateralLOffset(info.lateralLChassis_offset.x, info.lateralLChassis_offset.y, info.lateralLChassis_offset.z);
+	lateralLOffset = lateralLOffset.rotate(q.getAxis(), q.getAngle());
+	lateralLChassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+
+	lateralLChassis.transform.M[12] += lateralLOffset.getX();
+	lateralLChassis.transform.M[13] += lateralLOffset.getY();
+	lateralLChassis.transform.M[14] += lateralLOffset.getZ();
+
 	if (restart)
 	{
 		restart = false;
@@ -99,11 +109,18 @@ void PhysVehicle3D::Render()
 		lateralRChassis.transform.M[13] += lateralROffset.getY();
 		lateralRChassis.transform.M[14] += lateralROffset.getZ();
 
+		lateralLOffset = lateralROffset.rotate(q.getAxis(), q.getAngle());
+
+		lateralLChassis.transform.M[12] += lateralLOffset.getX();
+		lateralLChassis.transform.M[13] += lateralLOffset.getY();
+		lateralLChassis.transform.M[14] += lateralLOffset.getZ();
+
 	}
 	//Render del chassis parte por parte
 	chassis.Render();
 	aleronChassis.Render();
 	lateralRChassis.Render();
+	lateralLChassis.Render();
 }
 
 // ----------------------------------------------------------------------------

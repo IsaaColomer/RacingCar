@@ -21,17 +21,17 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 1, 4);
+	car.chassis_size.Set(2, 0.75, 4);
 	car.chassis_offset.Set(0, 1, 0);
 
-	car.aleronChassis_size.Set(3, 0.25, 0.5);
+	car.aleronChassis_size.Set(3, 0.5, 0.5);
 	car.aleronChassis_offset.Set(0, 1.65, -2);
 
-	car.lateralRChassis_size.Set(0.5, 0.25, 3);
+	car.lateralRChassis_size.Set(0.5, 0.5, 3);
 	car.lateralRChassis_offset.Set(1, 1.65, 0);
 
-	car.lateralLChassis_size.Set(2, 1, 4);
-	car.lateralLChassis_offset.Set(0, 1, 0);
+	car.lateralLChassis_size.Set(0.5, 0.5, 3);
+	car.lateralLChassis_offset.Set(-1, 1.65, 0);
 
 	car.mass = 500.0f;
 	car.suspensionStiffness = 20.88f;
@@ -136,7 +136,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		//vehicle->vehicle->;
 		//vehicle->body->applyImpulse(fVector, );
-		int a;
+		float a;
 		acceleration = MAX_ACCELERATION;
 		if (vehicle->GetKmh() < 70)
 		{
@@ -177,7 +177,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		int b;
+		float b;
 		acceleration = -MAX_ACCELERATION;
 		if (vehicle->GetKmh() > 10)
 		{
