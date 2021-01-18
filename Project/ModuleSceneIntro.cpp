@@ -25,9 +25,9 @@ bool ModuleSceneIntro::Start()
 	Cube c3(10,2,100);
 	Cube c4(100,2,10);
 	Cube ramp1(10, 10, 20);
-	Cube c6(17, 2, 17);
-	Cube c7(17, 2, 17);
-	Cube c8(17, 2, 17);
+	Cube c6(20, 2, 20);
+	Cube c7(20, 2, 20);
+	Cube c8(20, 2, 20);
 	Cube c9(50, 2, 20);
 	Cube ramp2(20, 2, 20);
 	Cube c10(200, 2, 20);
