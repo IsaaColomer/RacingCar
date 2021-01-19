@@ -99,7 +99,24 @@ bool ModuleSceneIntro::Start()
 	column010 = App->physics->AddBody(column10, 0);
 	column011 = App->physics->AddBody(column11, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
-	
+
+	Cube sensorCube(2, 2, 2);
+	sensor = App->physics->AddBody(sensorCube, 0.0f);
+	sensor->collision_listeners.add(this);
+	sensor->SetAsSensor(true);
+	sensor->SetPos(0, 62, 0);
+
+	Cube cubeSensor2(5, 5, 20);
+	sensor2 = App->physics->AddBody(cubeSensor2, 0.0f);
+	sensor2->collision_listeners.add(this);
+	sensor2->SetAsSensor(true);
+	sensor2->SetPos(-380, 41, 160);
+
+	Cube cubeSensor3(5, 5, 20);
+	sensor3 = App->physics->AddBody(cubeSensor3, 0.0f);
+	sensor3->collision_listeners.add(this);
+	sensor3->SetAsSensor(true);
+	sensor3->SetPos(-380, 41, 140);
 
 	cube->SetPos(0, 60, 0);
 	cube2->SetPos(0, 60, 100);
@@ -147,13 +164,6 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-	Cube sensorCube(2, 2, 2);
-
-	sensor = App->physics->AddBody(sensorCube, 0.0f);
-	sensor->collision_listeners.add(this);
-	sensor->SetAsSensor(true);
-	sensor->SetPos(0, 62, 0);
-
 	
 	Plane p(0, 1, 0, 0);
 	Cube cube_road(20,2,100);
@@ -190,6 +200,21 @@ update_status ModuleSceneIntro::Update(float dt)
 	cubeSensor.SetPos(0, 62, 0);
 	cubeSensor.color = Blue;
 	cubeSensor.Render();
+
+	Cube cubeSensor2(5, 1, 20);
+	cubeSensor2.SetPos(-380, 41, 160);
+	cubeSensor2.color = White;
+	cubeSensor2.Render();
+
+	Cube cubeSensor3(5, 1, 20);
+	cubeSensor3.SetPos(-380, 41, 140);
+	cubeSensor3.color = White;
+	cubeSensor3.Render();
+
+	/*cube_road10.wire = false;
+	cube_road10.SetPos(-350, 40, 160);
+	cube_road10.color = Blue;
+	cube_road10.Render();*/
 	//Cylinder cylinder_jump(20,20);
 
 	p.axis = true;
@@ -380,6 +405,12 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		jumpCol = true;
 		//sensor->IsSensor = false;
 		sensor->isSensor = false;
+	}
+	if (body1 == sensor2 || body1 == sensor3 && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
+	{
+		sprintCol = true;
+		//sensor->IsSensor = false;
+		//sensor->isSensor = false;
 	}
 	
 }

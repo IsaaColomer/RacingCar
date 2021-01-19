@@ -39,8 +39,8 @@ bool ModulePlayer::Start()
 	car.lateralL1Chassis_size.Set(0.5, 0.25, 4);
 	car.lateralL1Chassis_offset.Set(-0.5, 1.5, 0);
 
-	car.mass = 500.0f;
-	car.suspensionStiffness = 20.88f;
+	car.mass = 700.0f;
+	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
@@ -155,6 +155,11 @@ update_status ModulePlayer::Update(float dt)
 		App->scene_intro->jumpCol = false;
 		vehicle->body->applyCentralImpulse(iVector);
 	}
+	if (App->scene_intro->sprintCol == true)
+	{
+		App->scene_intro->sprintCol = false;
+		acceleration = 30000;
+	}
 	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN && jumped == false)
 	{
 		jumped = !jumped;
@@ -174,14 +179,14 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{/*Apliquem torque al girar, només actua a l'aire es el fVector que hem trobat
 		abans al principi de l'update multiplicat per la força que apliquem, en negatiu cap a l'esquerra*/
-		vehicle->body->applyTorque(fVector * -300);
+		vehicle->body->applyTorque(fVector * -600);
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		vehicle->body->applyTorque(fVector * 300);
+		vehicle->body->applyTorque(fVector * 600);
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}

@@ -23,6 +23,7 @@ public:
 
 public:
 	bool jumpCol = false;
+	bool sprintCol = false;
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
 	Sphere s_snake[MAX_SNAKE];
@@ -88,6 +89,8 @@ public:
 	PhysBody3D* column011;
 
 	PhysBody3D* sensor;
+	PhysBody3D* sensor2;
+	PhysBody3D* sensor3;
 	//PhysBody3D* cube1;
 
 //	PhysBody3D* cylinder1;
