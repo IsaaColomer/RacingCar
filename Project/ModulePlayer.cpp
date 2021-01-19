@@ -116,7 +116,7 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 63, 10);
-
+	vehicle->body->setUserPointer(vehicle);
 	vehicle->startQuat = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	
 	return true;
@@ -149,6 +149,11 @@ update_status ModulePlayer::Update(float dt)
 			a = MAX_ACCELERATION + 1000;
 			acceleration = a;
 		}
+	}
+	if (App->scene_intro->jumpCol == true)
+	{
+		App->scene_intro->jumpCol = false;
+		vehicle->body->applyCentralImpulse(iVector);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN && jumped == false)
 	{

@@ -147,6 +147,14 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+	Cube sensorCube(2, 2, 2);
+
+	sensor = App->physics->AddBody(sensorCube, 0.0f);
+	sensor->collision_listeners.add(this);
+	sensor->SetAsSensor(true);
+	sensor->SetPos(0, 62, 0);
+
+	
 	Plane p(0, 1, 0, 0);
 	Cube cube_road(20,2,100);
 	Cube cube_road2(10,2,100);
@@ -177,6 +185,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube column9(2, 8, 2);
 	Cube column10(2, 8, 2);
 	Cube column11(2, 8, 2);
+
+	Cube cubeSensor(2,2, 2);
+	cubeSensor.SetPos(0, 62, 0);
+	cubeSensor.color = Blue;
+	cubeSensor.Render();
 	//Cylinder cylinder_jump(20,20);
 
 	p.axis = true;
@@ -361,6 +374,13 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+
+	if (body1 == sensor && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
+	{
+		jumpCol = true;
+		//sensor->IsSensor = false;
+		sensor->isSensor = false;
+	}
 	
 }
 
