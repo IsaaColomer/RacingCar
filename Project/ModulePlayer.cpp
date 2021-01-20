@@ -158,11 +158,7 @@ update_status ModulePlayer::Update(float dt)
 		App->scene_intro->jumpCol = false;
 		vehicle->body->applyCentralImpulse(iVector);
 	}
-	if (App->scene_intro->sprintCol == true)
-	{
-		App->scene_intro->sprintCol = false;
-		acceleration = 30000;
-	}
+
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumped == false)
 	{
 		jumped = !jumped;

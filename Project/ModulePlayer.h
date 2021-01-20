@@ -26,6 +26,7 @@ public:
 	float acceleration;
 	float brake;
 	btVector3 fVector;
+	btVector3 bFlipV;
 	btVector3 iVector;
 	bool jumped = false;
 	int laps = 0;
