@@ -177,7 +177,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
-		vehicle->SetPos(-60, 63, 133);
+		vehicle->SetPos(0, 63, 0);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -257,6 +257,19 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->SetPos(0, 63, 0);
 		laps = 0;
+		timer2.Start();
+		vehicle->vehicle->resetSuspension();
+		if (vehicle->body->getLinearVelocity() != 0)
+		{
+			vehicle->body->setAngularVelocity({ 0,0,0 });
+		}
+		if (vehicle->GetKmh() != 0)
+			vehicle->body->setLinearVelocity({ 0,0,0 });
+	}
+	if (laps == 4)
+	{
+		vehicle->SetPos(0, 63, 0);
+		laps = 1;
 		timer2.Start();
 		vehicle->vehicle->resetSuspension();
 		if (vehicle->body->getLinearVelocity() != 0)
