@@ -163,7 +163,7 @@ update_status ModulePlayer::Update(float dt)
 		App->scene_intro->sprintCol = false;
 		acceleration = 30000;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN && jumped == false)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && jumped == false)
 	{
 		jumped = !jumped;
 		timer.Start();
