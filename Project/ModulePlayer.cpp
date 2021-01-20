@@ -39,7 +39,10 @@ bool ModulePlayer::Start()
 	car.lateralL1Chassis_size.Set(0.5, 0.25, 4);
 	car.lateralL1Chassis_offset.Set(-0.5, 1.5, 0);
 
-	car.mass = 700.0f;
+	car.cabinChassis_size.Set(1,1,3);
+	car.cabinChassis_offset.Set(0, 1.5, 0);
+
+	car.mass = 500.0f;
 	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;

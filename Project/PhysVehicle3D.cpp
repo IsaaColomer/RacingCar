@@ -101,6 +101,16 @@ void PhysVehicle3D::Render()
 	lateralL1Chassis.transform.M[13] += lateralL1Offset.getY();
 	lateralL1Chassis.transform.M[14] += lateralL1Offset.getZ();
 
+	Cube cabinChassis(info.cabinChassis_size.x, info.cabinChassis_size.y, info.cabinChassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&cabinChassis.transform);
+	btVector3 cabinOffset(info.cabinChassis_offset.x, info.cabinChassis_offset.y, info.cabinChassis_offset.z);
+	cabinOffset = cabinOffset.rotate(q.getAxis(), q.getAngle());
+	cabinChassis.color.Set(2.224f, 2.220f, 0.f, 1.f);
+
+	cabinChassis.transform.M[12] += cabinOffset.getX();
+	cabinChassis.transform.M[13] += cabinOffset.getY();
+	cabinChassis.transform.M[14] += cabinOffset.getZ();
+
 	if (restart)
 	{
 		restart = false;
@@ -147,6 +157,10 @@ void PhysVehicle3D::Render()
 		lateralL1Chassis.transform.M[13] += lateralL1Offset.getY();
 		lateralL1Chassis.transform.M[14] += lateralL1Offset.getZ();
 
+		cabinOffset = cabinOffset.rotate(q.getAxis(), q.getAngle());
+		cabinChassis.transform.M[12] += cabinOffset.getX();
+		cabinChassis.transform.M[13] += cabinOffset.getY();
+		cabinChassis.transform.M[14] += cabinOffset.getZ();
 	}
 	//Render del chassis parte por parte
 	chassis.Render();
@@ -155,6 +169,7 @@ void PhysVehicle3D::Render()
 	lateralLChassis.Render();
 	lateralR1Chassis.Render();
 	lateralL1Chassis.Render();
+	cabinChassis.Render();
 }
 
 // ----------------------------------------------------------------------------
