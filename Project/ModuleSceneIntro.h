@@ -33,6 +33,7 @@ public:
 	*/
 
 	bool lap = false;
+	bool checked = false;
 	bool lapInv = false;
 
 	PhysBody3D* pb_chassis;
@@ -91,12 +92,16 @@ public:
 	PhysBody3D* column010;
 	PhysBody3D* column011;
 	PhysBody3D* cubeElev;
+	PhysBody3D* arc1;
+	PhysBody3D* arc2;
+	PhysBody3D* arc3;
 
 	PhysBody3D* sensor;
 	PhysBody3D* sensor2;
 	PhysBody3D* sensor3;
 	PhysBody3D* sensorL;
 	PhysBody3D* sensorI;
+	PhysBody3D* checkPoint0;
 	//PhysBody3D* cube1;
 
 //	PhysBody3D* cylinder1;

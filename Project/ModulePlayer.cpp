@@ -173,6 +173,11 @@ update_status ModulePlayer::Update(float dt)
 
 	if (time >= 4)
 		jumped = !jumped;
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN && jumped == false)
+	{
+		vehicle->SetPos(-410, 43, 160);
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
@@ -230,7 +235,14 @@ update_status ModulePlayer::Update(float dt)
 
 	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
 	{
-		vehicle->SetPos(0, 63, 0);
+		if (App->scene_intro->checked == true)
+		{
+			vehicle->SetPos(-410, 43, 160);
+		}
+		else
+		{
+			vehicle->SetPos(0, 63, 26);
+		}
 		//vehicle->restart = true;
 		vehicle->Turn(360);
 

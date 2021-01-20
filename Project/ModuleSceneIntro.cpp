@@ -50,6 +50,9 @@ bool ModuleSceneIntro::Start()
 	Cube column10(2, 8, 2);
 	Cube column11(2, 8, 2);
 	Cube elevatedC(20, 8, 80);
+	Cube arc01(2, 10, 2);
+	Cube arc02(2, 2, 13);
+	Cube arc03(2, 10, 2);
 	//Cylinder cyl1(20, 20);
 
 	ramp1.SetRotation(-20, { 1,0,0 });
@@ -100,6 +103,9 @@ bool ModuleSceneIntro::Start()
 	column010 = App->physics->AddBody(column10, 0);
 	column011 = App->physics->AddBody(column11, 0);
 	cubeElev = App->physics->AddBody(elevatedC, 0);
+	arc1 = App->physics->AddBody(arc01, 0);
+	arc2 = App->physics->AddBody(arc02, 0);
+	arc3 = App->physics->AddBody(arc03, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
 
 	//Cube sensorCube(2, 2, 2);
@@ -132,6 +138,12 @@ bool ModuleSceneIntro::Start()
 	sensorI->SetAsSensor(true);
 	sensorI->SetPos(0, 68, 18);
 
+	Cube checkPoint(5, 2, 20);
+	checkPoint0 = App->physics->AddBody(checkPoint, 0.0f);
+	checkPoint0->collision_listeners.add(this);
+	checkPoint0->SetAsSensor(true);
+	checkPoint0->SetPos(-410, 43, 160);
+
 	cube->SetPos(0, 60, 0);
 	cube2->SetPos(0, 60, 100);
 	cube3->SetPos(0, 60, 200);
@@ -162,6 +174,9 @@ bool ModuleSceneIntro::Start()
 	column010->SetPos(-13, 48, 140);
 	column011->SetPos(20, 50, 140);
 	cubeElev->SetPos(0, 62, -20);
+	arc1->SetPos(-410, 43, 167);
+	arc2->SetPos(-410, 47, 161);
+	arc3->SetPos(-410, 43, 154);
 	//cube16->SetPos(-40, 42, 140);
 	//cylinder1->SetPos(0, 60, 100);
 
@@ -210,6 +225,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube column10(2, 8, 2);
 	Cube column11(2, 8, 2);
 	Cube cubeStart(20, 8, 80);
+	Cube arc1(2, 10, 2);
+	Cube arc2(2, 2, 13);
+	Cube arc3(2, 10, 2);
 
 	//Cube cubeSensor(2,2, 2);
 	//cubeSensor.SetPos(0, 62, 0);
@@ -250,6 +268,21 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube_road.SetPos(0, 60, 0);
 	cube_road.color = Blue;
 	cube_road.Render();
+
+	arc1.wire = false;
+	arc1.SetPos(-410, 43, 167);
+	arc1.color = White;
+	arc1.Render();
+
+	arc2.wire = false;
+	arc2.SetPos(-410, 47, 161);
+	arc2.color = White;
+	arc2.Render();
+
+	arc3.wire = false;
+	arc3.SetPos(-410, 43, 154);
+	arc3.color = White;
+	arc3.Render();
 
 	cube_road2.wire = false;
 	cube_road2.SetPos(0, 60,100);
@@ -446,7 +479,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == sensorI && body2 == (PhysBody3D*)App->player->vehicle)
 	{
 		lap = false;
+		checked = false;
+	}
+	if (body1 == checkPoint0 && body2 == (PhysBody3D*)App->player->vehicle)
+	{
+		checked = true;
 	}
 	
 }
-
