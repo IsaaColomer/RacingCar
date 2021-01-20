@@ -32,6 +32,9 @@ public:
 	Sphere s_snake2[MAX_SNAKE];
 	*/
 
+	bool lap = false;
+	bool lapInv = false;
+
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
 
@@ -87,10 +90,13 @@ public:
 	PhysBody3D* column09;
 	PhysBody3D* column010;
 	PhysBody3D* column011;
+	PhysBody3D* cubeElev;
 
 	PhysBody3D* sensor;
 	PhysBody3D* sensor2;
 	PhysBody3D* sensor3;
+	PhysBody3D* sensorL;
+	PhysBody3D* sensorI;
 	//PhysBody3D* cube1;
 
 //	PhysBody3D* cylinder1;

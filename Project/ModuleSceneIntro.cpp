@@ -49,6 +49,7 @@ bool ModuleSceneIntro::Start()
 	Cube column9(2, 8, 2);
 	Cube column10(2, 8, 2);
 	Cube column11(2, 8, 2);
+	Cube elevatedC(20, 8, 80);
 	//Cylinder cyl1(20, 20);
 
 	ramp1.SetRotation(-20, { 1,0,0 });
@@ -98,13 +99,14 @@ bool ModuleSceneIntro::Start()
 	column09 = App->physics->AddBody(column9, 0);
 	column010 = App->physics->AddBody(column10, 0);
 	column011 = App->physics->AddBody(column11, 0);
+	cubeElev = App->physics->AddBody(elevatedC, 0);
 	//cylinder1 = App->physics->AddBody(cyl1, 0);
 
-	Cube sensorCube(2, 2, 2);
-	sensor = App->physics->AddBody(sensorCube, 0.0f);
-	sensor->collision_listeners.add(this);
-	sensor->SetAsSensor(true);
-	sensor->SetPos(0, 62, 0);
+	//Cube sensorCube(2, 2, 2);
+	//sensor = App->physics->AddBody(sensorCube, 0.0f);
+	//sensor->collision_listeners.add(this);
+	//sensor->SetAsSensor(true);
+	//sensor->SetPos(0, 62, 0);
 
 	Cube cubeSensor2(5, 5, 20);
 	sensor2 = App->physics->AddBody(cubeSensor2, 0.0f);
@@ -117,6 +119,18 @@ bool ModuleSceneIntro::Start()
 	sensor3->collision_listeners.add(this);
 	sensor3->SetAsSensor(true);
 	sensor3->SetPos(-380, 41, 140);
+
+	Cube sensorLap(20, 2, 2);
+	sensorL = App->physics->AddBody(sensorLap, 0.0f);
+	sensorL->collision_listeners.add(this);
+	sensorL->SetAsSensor(true);
+	sensorL->SetPos(0, 68, 10);
+
+	Cube sensorLapInv(20, 2, 2);
+	sensorI = App->physics->AddBody(sensorLapInv, 0.0f);
+	sensorI->collision_listeners.add(this);
+	sensorI->SetAsSensor(true);
+	sensorI->SetPos(0, 68, 18);
 
 	cube->SetPos(0, 60, 0);
 	cube2->SetPos(0, 60, 100);
@@ -147,6 +161,7 @@ bool ModuleSceneIntro::Start()
 	column09->SetPos(-25, 46, 140);
 	column010->SetPos(-13, 48, 140);
 	column011->SetPos(20, 50, 140);
+	cubeElev->SetPos(0, 62, -20);
 	//cube16->SetPos(-40, 42, 140);
 	//cylinder1->SetPos(0, 60, 100);
 
@@ -164,7 +179,6 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-	
 	Plane p(0, 1, 0, 0);
 	Cube cube_road(20,2,100);
 	Cube cube_road2(10,2,100);
@@ -195,11 +209,12 @@ update_status ModuleSceneIntro::Update(float dt)
 	Cube column9(2, 8, 2);
 	Cube column10(2, 8, 2);
 	Cube column11(2, 8, 2);
+	Cube cubeStart(20, 8, 80);
 
-	Cube cubeSensor(2,2, 2);
-	cubeSensor.SetPos(0, 62, 0);
-	cubeSensor.color = Blue;
-	cubeSensor.Render();
+	//Cube cubeSensor(2,2, 2);
+	//cubeSensor.SetPos(0, 62, 0);
+	//cubeSensor.color = Blue;
+	//cubeSensor.Render();
 
 	Cube cubeSensor2(5, 1, 20);
 	cubeSensor2.SetPos(-380, 41, 160);
@@ -211,6 +226,12 @@ update_status ModuleSceneIntro::Update(float dt)
 	cubeSensor3.color = White;
 	cubeSensor3.Render();
 
+	Cube sensorLap(20, 2,2);
+	sensorLap.SetPos(0, 68, 10);
+	sensorLap.color = Black;
+	sensorLap.Render();
+
+
 	/*cube_road10.wire = false;
 	cube_road10.SetPos(-350, 40, 160);
 	cube_road10.color = Blue;
@@ -220,6 +241,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 	
+	cubeStart.wire = false;
+	cubeStart.SetPos(0, 62, -20);
+	cubeStart.color = White;
+	cubeStart.Render();
+
 	cube_road.wire = false;
 	cube_road.SetPos(0, 60, 0);
 	cube_road.color = Blue;
@@ -400,17 +426,26 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 
-	if (body1 == sensor && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
-	{
-		jumpCol = true;
-		//sensor->IsSensor = false;
-		sensor->isSensor = false;
-	}
-	if (body1 == sensor2 || body1 == sensor3 && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
+	//if (body1 == sensor && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
+	//{
+	//	jumpCol = true;
+	//	//sensor->IsSensor = false;
+	//	sensor->isSensor = false;
+	//}
+	if (body1 == sensor2 || body1 == sensor3 && body2 == (PhysBody3D*)App->player->vehicle)
 	{
 		sprintCol = true;
 		//sensor->IsSensor = false;
 		//sensor->isSensor = false;
+	}
+	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
+	{
+		lap = true;
+		App->player->laps++;
+	}
+	if (body1 == sensorI && body2 == (PhysBody3D*)App->player->vehicle)
+	{
+		lap = false;
 	}
 	
 }

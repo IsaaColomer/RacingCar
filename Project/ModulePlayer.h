@@ -28,5 +28,6 @@ public:
 	btVector3 fVector;
 	btVector3 iVector;
 	bool jumped = false;
+	int laps = 0;
 	Timer timer;
 };

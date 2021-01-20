@@ -118,7 +118,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 63, 10);
+	vehicle->SetPos(0, 63, 0);
 	vehicle->body->setUserPointer(vehicle);
 	vehicle->startQuat = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	
@@ -176,7 +176,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
 	{
 		vehicle->restart = true;
-		vehicle->SetPos(-60, 44, 133);
+		vehicle->SetPos(-60, 63, 133);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -230,7 +230,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() <= 30.0f)
 	{
-		vehicle->SetPos(0, 63, 10);
+		vehicle->SetPos(0, 63, 0);
 		//vehicle->restart = true;
 		vehicle->Turn(360);
 
@@ -246,7 +246,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y | UP AXIS: %d", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY(), vehicle->vehicle->getUpAxis());
+	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y | UP AXIS: %d | LAPS: %d", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY(), vehicle->vehicle->getUpAxis(), laps);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
