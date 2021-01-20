@@ -17,7 +17,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-
+	timer2.Start();
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -251,10 +251,26 @@ update_status ModulePlayer::Update(float dt)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
 
+	int totalTime = iniTime - (timer2.Read()) / 1000;
+
+	if (totalTime == 0)
+	{
+		vehicle->SetPos(0, 63, 0);
+		laps = 0;
+		timer2.Start();
+		vehicle->vehicle->resetSuspension();
+		if (vehicle->body->getLinearVelocity() != 0)
+		{
+			vehicle->body->setAngularVelocity({ 0,0,0 });
+		}
+		if (vehicle->GetKmh() != 0)
+			vehicle->body->setLinearVelocity({ 0,0,0 });
+	}
+
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y | UP AXIS: %d | LAPS: %d", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY(), vehicle->vehicle->getUpAxis(), laps);
+	sprintf_s(title, "%.1f m/s^2 | %.1f Km/h | %.1f Y | UP AXIS: %d | LAPS: %d | Time: %d", acceleration, vehicle->GetKmh(), vehicle->vehicle->getChassisWorldTransform().getOrigin().getY(), vehicle->vehicle->getUpAxis(), laps, totalTime);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
