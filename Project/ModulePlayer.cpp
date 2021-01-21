@@ -51,6 +51,8 @@ bool ModulePlayer::Start()
 	car.lapChassis3_size.Set(0.5, 0.3, 0.5);
 	car.lapChassis3_offset.Set(-0.7, 1.2, -2.35);
 
+	car.time_size.Set(3, 0.25, 0.5);
+	car.time_offset.Set(0, 1.95, -2);
 
 	car.mass = 500.0f;
 	car.suspensionStiffness = 10.88f;
@@ -148,6 +150,8 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	vehicle->info.time_size.Set(totalTime/50, 0.25, 0.5);
+	vehicle->info.time_offset.Set(0, 1.95, -2);
 	//Conseguir la direccion del coche para aplicar torque
 	fVector = vehicle->vehicle->getForwardVector();
 	iVector = { 0,5900,0 };//Vector que aplica força sobre l'eix de les y per fer que si el cotxe volca es pugui tornar a possar a la posició correcte.
@@ -261,7 +265,7 @@ update_status ModulePlayer::Update(float dt)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
 
-	int totalTime = iniTime - (timer2.Read()) / 1000;
+	totalTime = iniTime - (timer2.Read()) / 1000;
 
 	if (totalTime == 0)
 	{
@@ -313,6 +317,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->thirdLap = false;
 	}
+	
 	vehicle->Render();
 
 	char title[80];

@@ -32,5 +32,6 @@ public:
 	int laps = 0;
 	Timer timer;
 	Timer timer2;
-	int iniTime = 180;
+	float iniTime = 180;
+	float totalTime = 0;
 };

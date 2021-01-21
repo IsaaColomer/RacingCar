@@ -141,6 +141,16 @@ void PhysVehicle3D::Render()
 	lapChassis3.transform.M[13] += lapOffset3.getY();
 	lapChassis3.transform.M[14] += lapOffset3.getZ();
 
+	Cube time(info.time_size.x, info.time_size.y, info.time_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&time.transform);
+	btVector3 timeOffset(info.time_offset.x, info.time_offset.y, info.time_offset.z);
+	timeOffset = timeOffset.rotate(q.getAxis(), q.getAngle());
+	time.color.Set(1.255, 0.f, 0.f, 1.f);
+
+	time.transform.M[12] += timeOffset.getX();
+	time.transform.M[13] += timeOffset.getY();
+	time.transform.M[14] += lapOffset3.getZ();
+
 	if (restart)
 	{
 		restart = false;
@@ -206,6 +216,7 @@ void PhysVehicle3D::Render()
 		lapChassis2.Render();
 	if(thirdLap)
 		lapChassis3.Render();
+	time.Render();
 }
 
 // ----------------------------------------------------------------------------

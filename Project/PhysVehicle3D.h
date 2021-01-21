@@ -58,6 +58,9 @@ struct VehicleInfo
 	vec3 lapChassis3_size;
 	vec3 lapChassis3_offset;
 
+	vec3 time_size;
+	vec3 time_offset;
+
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car
 	float suspensionCompression; // default to 0.83
