@@ -3,6 +3,9 @@
 #include "PhysBody3D.h"
 #include "glmath.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
+#include "Module.h"
+#include "Globals.h"
+#include "p2Point.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -46,6 +49,15 @@ struct VehicleInfo
 	vec3 cabinChassis_size;
 	vec3 cabinChassis_offset;
 
+	vec3 lapChassis_size;
+	vec3 lapChassis_offset;
+
+	vec3 lapChassis2_size;
+	vec3 lapChassis2_offset;
+
+	vec3 lapChassis3_size;
+	vec3 lapChassis3_offset;
+
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car
 	float suspensionCompression; // default to 0.83
@@ -75,4 +87,7 @@ public:
 	btRaycastVehicle* vehicle;
 	btQuaternion startQuat;
 	bool restart = false;
+	bool firstLap = false;
+	bool secondLap = false;
+	bool thirdLap = false;
 };

@@ -42,6 +42,16 @@ bool ModulePlayer::Start()
 	car.cabinChassis_size.Set(1,1,3);
 	car.cabinChassis_offset.Set(0, 1.5, 0);
 
+	car.lapChassis_size.Set(0.5, 0.3, 0.5);
+	car.lapChassis_offset.Set(0.65, 1.2, -2.35);
+
+	car.lapChassis2_size.Set(0.5, 0.3, 0.5);
+	car.lapChassis2_offset.Set(0, 1.2, -2.35);
+
+	car.lapChassis3_size.Set(0.5, 0.3, 0.5);
+	car.lapChassis3_offset.Set(-0.7, 1.2, -2.35);
+
+
 	car.mass = 500.0f;
 	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
@@ -279,7 +289,30 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->GetKmh() != 0)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
 	}
-
+	if (laps >= 1)
+	{
+		vehicle->firstLap = true;
+	}
+	else
+	{
+		vehicle->firstLap = false;
+	}
+	if (laps >= 2)
+	{
+		vehicle->secondLap = true;
+	}
+	else
+	{
+		vehicle->secondLap = false;
+	}
+	if (laps == 3)
+	{
+		vehicle->thirdLap = true;
+	}
+	else
+	{
+		vehicle->thirdLap = false;
+	}
 	vehicle->Render();
 
 	char title[80];

@@ -235,6 +235,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	//cubeSensor.color = Blue;
 	//cubeSensor.Render();
 
+
+
 	Cube cubeSensor2(5, 1, 20);
 	cubeSensor2.SetPos(-380, 41, 160);
 	cubeSensor2.color = White;
@@ -453,24 +455,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	pa.color = Green;
 	pa.SetPos(20, 0, 40);
 	pa.Render();
-
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-
-	//if (body1 == sensor && body2 == (PhysBody3D*)App->player->vehicle && sensor->isSensor == true)
-	//{
-	//	jumpCol = true;
-	//	//sensor->IsSensor = false;
-	//	sensor->isSensor = false;
-	//}
 	if (body1 == sensor2 || body1 == sensor3 && body2 == (PhysBody3D*)App->player->vehicle)
 	{
 		sprintCol = true;
-		//sensor->IsSensor = false;
-		//sensor->isSensor = false;
 	}
 	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
 	{

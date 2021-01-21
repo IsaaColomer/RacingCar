@@ -111,6 +111,36 @@ void PhysVehicle3D::Render()
 	cabinChassis.transform.M[13] += cabinOffset.getY();
 	cabinChassis.transform.M[14] += cabinOffset.getZ();
 
+	Cube lapChassis(info.lapChassis_size.x, info.lapChassis_size.y, info.lapChassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis.transform);
+	btVector3 lapOffset(info.lapChassis_offset.x, info.lapChassis_offset.y, info.lapChassis_offset.z);
+	lapOffset = lapOffset.rotate(q.getAxis(), q.getAngle());
+	lapChassis.color.Set(0., 0., 0.f, 1.f);
+
+	lapChassis.transform.M[12] += lapOffset.getX();
+	lapChassis.transform.M[13] += lapOffset.getY();
+	lapChassis.transform.M[14] += lapOffset.getZ();
+
+	Cube lapChassis2(info.lapChassis2_size.x, info.lapChassis2_size.y, info.lapChassis2_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis2.transform);
+	btVector3 lapOffset2(info.lapChassis2_offset.x, info.lapChassis2_offset.y, info.lapChassis2_offset.z);
+	lapOffset2 = lapOffset2.rotate(q.getAxis(), q.getAngle());
+	lapChassis2.color.Set(0., 0., 0.f, 1.f);
+
+	lapChassis2.transform.M[12] += lapOffset2.getX();
+	lapChassis2.transform.M[13] += lapOffset2.getY();
+	lapChassis2.transform.M[14] += lapOffset2.getZ();
+
+	Cube lapChassis3(info.lapChassis3_size.x, info.lapChassis3_size.y, info.lapChassis3_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis3.transform);
+	btVector3 lapOffset3(info.lapChassis3_offset.x, info.lapChassis3_offset.y, info.lapChassis3_offset.z);
+	lapOffset3 = lapOffset3.rotate(q.getAxis(), q.getAngle());
+	lapChassis3.color.Set(0., 0., 0.f, 1.f);
+
+	lapChassis3.transform.M[12] += lapOffset3.getX();
+	lapChassis3.transform.M[13] += lapOffset3.getY();
+	lapChassis3.transform.M[14] += lapOffset3.getZ();
+
 	if (restart)
 	{
 		restart = false;
@@ -170,6 +200,12 @@ void PhysVehicle3D::Render()
 	lateralR1Chassis.Render();
 	lateralL1Chassis.Render();
 	cabinChassis.Render();
+	if(firstLap)
+		lapChassis.Render();
+	if(secondLap)
+		lapChassis2.Render();
+	if(thirdLap)
+		lapChassis3.Render();
 }
 
 // ----------------------------------------------------------------------------
