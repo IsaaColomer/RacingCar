@@ -197,6 +197,7 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{/*Apliquem torque al girar, només actua a l'aire es el fVector que hem trobat
 		abans al principi de l'update multiplicat per la força que apliquem, en negatiu cap a l'esquerra*/
+		vehicle->info.time_offset.Set(0, 1.95, -2);
 		vehicle->body->applyTorque(fVector * -600);
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
@@ -204,6 +205,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
+		vehicle->info.time_offset.Set(0, 1.95, -2);
 		vehicle->body->applyTorque(fVector * 600);
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
