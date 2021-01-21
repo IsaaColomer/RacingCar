@@ -149,7 +149,7 @@ void PhysVehicle3D::Render()
 
 	time.transform.M[12] += timeOffset.getX();
 	time.transform.M[13] += timeOffset.getY();
-	time.transform.M[14] += lapOffset3.getZ();
+	time.transform.M[14] += timeOffset.getZ();
 
 	if (restart)
 	{

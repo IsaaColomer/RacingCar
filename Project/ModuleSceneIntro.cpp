@@ -464,6 +464,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		sprintCol = true;
 	}
+	else
+	{
+		sprintCol = false;
+	}
 	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
 	{
 		lap = true;
@@ -477,6 +481,5 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == checkPoint0 && body2 == (PhysBody3D*)App->player->vehicle)
 	{
 		checked = true;
-	}
-	
+	}	
 }

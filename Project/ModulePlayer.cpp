@@ -150,6 +150,7 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	//vehicle->
 	vehicle->info.time_size.Set(totalTime/50, 0.25, 0.5);
 	vehicle->info.time_offset.Set(0, 1.95, -2);
 	//Conseguir la direccion del coche para aplicar torque
@@ -167,6 +168,7 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = a;
 		}
 	}
+
 	if (App->scene_intro->jumpCol == true)
 	{
 		App->scene_intro->jumpCol = false;
@@ -197,7 +199,6 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{/*Apliquem torque al girar, només actua a l'aire es el fVector que hem trobat
 		abans al principi de l'update multiplicat per la força que apliquem, en negatiu cap a l'esquerra*/
-		vehicle->info.time_offset.Set(0, 1.95, -2);
 		vehicle->body->applyTorque(fVector * -600);
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
@@ -205,7 +206,6 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		vehicle->info.time_offset.Set(0, 1.95, -2);
 		vehicle->body->applyTorque(fVector * 600);
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
@@ -220,6 +220,11 @@ update_status ModulePlayer::Update(float dt)
 			b = -MAX_ACCELERATION - 4000;
 			acceleration = b;
 		}
+	}
+	if (App->scene_intro->sprintCol)
+	{
+		acceleration = MAX_ACCELERATION + 3000;
+		App->scene_intro->sprintCol = false;
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
