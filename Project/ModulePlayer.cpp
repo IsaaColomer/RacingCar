@@ -54,6 +54,9 @@ bool ModulePlayer::Start()
 	car.time_size.Set(3, 0.25, 0.5);
 	car.time_offset.Set(0, 1.95, -2);
 
+	car.vel_size.Set(3,0.25,0.5);
+	car.vel_offset.Set(0,0.6,-2.5);
+
 	car.mass = 500.0f;
 	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
@@ -153,6 +156,9 @@ update_status ModulePlayer::Update(float dt)
 	//vehicle->
 	vehicle->info.time_size.Set(totalTime/50, 0.25, 0.5);
 	vehicle->info.time_offset.Set(0, 1.95, -2);
+
+	vehicle->info.vel_size.Set(vehicle->GetKmh()/50, 0.25, 0.5);
+	vehicle->info.vel_offset.Set(0, 0.6, -2.5);
 	//Conseguir la direccion del coche para aplicar torque
 	fVector = vehicle->vehicle->getForwardVector();
 	iVector = { 0,5900,0 };//Vector que aplica força sobre l'eix de les y per fer que si el cotxe volca es pugui tornar a possar a la posició correcte.
