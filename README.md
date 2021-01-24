@@ -6,7 +6,7 @@
 - A full circuit.
 - Boosters, if u press them ur speed increases!
 - Checkpoint, to make it easier.
-- Lap counter, attached to the car, black cubes.
+- Lap counter, attached to the car, white cubes.
 - Time counter, attached to the car, red cube on the top of the chassis.
 - Speed counter, attached to the car, yellow cube at the very end of the chassis.
 
@@ -19,9 +19,9 @@
 - C tp to the checkpoint.
 
 - Rules: 
-- You must complete the full circuit three times to win, or run out of time.
+- You must complete the full circuit three times to win, or running out of time will make you loose.
 
 - Developers:
 - Isaac Digón Donaire.
-- Enric Morales.
+- Enric Morales Calero.
 - Isaac Colomer Casas 
