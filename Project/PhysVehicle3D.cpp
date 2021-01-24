@@ -46,6 +46,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
+	chassis.color.Set(0.00f, 0.0f, 0.0f, 1.0f);
 
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
@@ -55,7 +56,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&aleronChassis.transform);
 	btVector3 aleronOffset(info.aleronChassis_offset.x, info.aleronChassis_offset.y, info.aleronChassis_offset.z);
 	aleronOffset = aleronOffset.rotate(q.getAxis(), q.getAngle());
-	aleronChassis.color.Set(0.50f, 0.39f, 0.52f,1.0f);
+	aleronChassis.color.Set(0.00f, 0.0f, 0.0f,1.0f);
 
 	aleronChassis.transform.M[12] += aleronOffset.getX();
 	aleronChassis.transform.M[13] += aleronOffset.getY();
@@ -65,7 +66,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralRChassis.transform);
 	btVector3 lateralROffset(info.lateralRChassis_offset.x, info.lateralRChassis_offset.y, info.lateralRChassis_offset.z);
 	lateralROffset = lateralROffset.rotate(q.getAxis(), q.getAngle());
-	lateralRChassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+	lateralRChassis.color.Set(0.00f, 0.0f, 0.0f, 1.0f);
 
 	lateralRChassis.transform.M[12] += lateralROffset.getX();
 	lateralRChassis.transform.M[13] += lateralROffset.getY();
@@ -75,7 +76,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralLChassis.transform);
 	btVector3 lateralLOffset(info.lateralLChassis_offset.x, info.lateralLChassis_offset.y, info.lateralLChassis_offset.z);
 	lateralLOffset = lateralLOffset.rotate(q.getAxis(), q.getAngle());
-	lateralLChassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+	lateralLChassis.color.Set(0.0f, 0.0f, 0.0f, 1.0f);
 
 	lateralLChassis.transform.M[12] += lateralLOffset.getX();
 	lateralLChassis.transform.M[13] += lateralLOffset.getY();
@@ -85,7 +86,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralR1Chassis.transform);
 	btVector3 lateralR1Offset(info.lateralR1Chassis_offset.x, info.lateralR1Chassis_offset.y, info.lateralR1Chassis_offset.z);
 	lateralR1Offset = lateralR1Offset.rotate(q.getAxis(), q.getAngle());
-	lateralR1Chassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+	lateralR1Chassis.color.Set(0.00f, 0.0f, 1.52f, 1.0f);
 
 	lateralR1Chassis.transform.M[12] += lateralR1Offset.getX();
 	lateralR1Chassis.transform.M[13] += lateralR1Offset.getY();
@@ -95,7 +96,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lateralL1Chassis.transform);
 	btVector3 lateralL1Offset(info.lateralL1Chassis_offset.x, info.lateralL1Chassis_offset.y, info.lateralL1Chassis_offset.z);
 	lateralL1Offset = lateralL1Offset.rotate(q.getAxis(), q.getAngle());
-	lateralL1Chassis.color.Set(0.50f, 0.39f, 0.52f, 1.0f);
+	lateralL1Chassis.color.Set(0.00f, 0.0f, 1.52f, 1.0f);
 
 	lateralL1Chassis.transform.M[12] += lateralL1Offset.getX();
 	lateralL1Chassis.transform.M[13] += lateralL1Offset.getY();
@@ -115,7 +116,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis.transform);
 	btVector3 lapOffset(info.lapChassis_offset.x, info.lapChassis_offset.y, info.lapChassis_offset.z);
 	lapOffset = lapOffset.rotate(q.getAxis(), q.getAngle());
-	lapChassis.color.Set(0., 0., 0.f, 1.f);
+	lapChassis.color.Set(1.f, 1.f, 1.f, 1.f);
 
 	lapChassis.transform.M[12] += lapOffset.getX();
 	lapChassis.transform.M[13] += lapOffset.getY();
@@ -125,7 +126,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis2.transform);
 	btVector3 lapOffset2(info.lapChassis2_offset.x, info.lapChassis2_offset.y, info.lapChassis2_offset.z);
 	lapOffset2 = lapOffset2.rotate(q.getAxis(), q.getAngle());
-	lapChassis2.color.Set(0., 0., 0.f, 1.f);
+	lapChassis2.color.Set(1.f, 1.f, 1.f, 1.f);
 
 	lapChassis2.transform.M[12] += lapOffset2.getX();
 	lapChassis2.transform.M[13] += lapOffset2.getY();
@@ -135,7 +136,7 @@ void PhysVehicle3D::Render()
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lapChassis3.transform);
 	btVector3 lapOffset3(info.lapChassis3_offset.x, info.lapChassis3_offset.y, info.lapChassis3_offset.z);
 	lapOffset3 = lapOffset3.rotate(q.getAxis(), q.getAngle());
-	lapChassis3.color.Set(0., 0., 0.f, 1.f);
+	lapChassis3.color.Set(1.f, 1.f, 1.f, 1.f);
 
 	lapChassis3.transform.M[12] += lapOffset3.getX();
 	lapChassis3.transform.M[13] += lapOffset3.getY();
