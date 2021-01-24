@@ -34,6 +34,7 @@ public:
 	Timer timer2;
 	float iniTime = 200;
 	float totalTime = 0;
+	bool startLap = false;
 
 	uint winFx = 0;
 	uint lostFx = 0;

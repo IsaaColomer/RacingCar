@@ -468,11 +468,13 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		sprintCol = false;
 	}
-	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
+	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false && App->player->startLap == true)
 	{
 		lap = true;
 		App->audio->PlayFx(App->player->lapFx);
 		App->player->laps++;
+		App->player->startLap = true;
+
 	}
 	if (body1 == sensorI && body2 == (PhysBody3D*)App->player->vehicle)
 	{
