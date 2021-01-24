@@ -131,7 +131,7 @@ bool ModuleSceneIntro::Start()
 	sensorL = App->physics->AddBody(sensorLap, 0.0f);
 	sensorL->collision_listeners.add(this);
 	sensorL->SetAsSensor(true);
-	sensorL->SetPos(0, 68, 10);
+	sensorL->SetPos(0, 62, 50);
 
 	Cube sensorLapInv(20, 2, 2);
 	sensorI = App->physics->AddBody(sensorLapInv, 0.0f);
@@ -468,12 +468,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		sprintCol = false;
 	}
-	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false && App->player->startLap == true)
+	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
 	{
 		lap = true;
 		App->audio->PlayFx(App->player->lapFx);
 		App->player->laps++;
-		App->player->startLap = true;
 
 	}
 	if (body1 == sensorI && body2 == (PhysBody3D*)App->player->vehicle)
