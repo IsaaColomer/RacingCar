@@ -37,4 +37,5 @@ public:
 
 	uint winFx = 0;
 	uint lostFx = 0;
+	uint lapFx = 0;
 };

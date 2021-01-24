@@ -23,6 +23,7 @@ bool ModulePlayer::Start()
 	App->audio->PlayMusic("../Assets/Music/racingMusic.ogg", 0.2f);
 	lostFx = App->audio->LoadFx("../Assets/Fx/noTimeFx.wav");
 	winFx = App->audio->LoadFx("../Assets/Fx/wonGame.wav");
+	lapFx = App->audio->LoadFx("../Assets/Fx/lap.wav");
 
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 0.75, 4);

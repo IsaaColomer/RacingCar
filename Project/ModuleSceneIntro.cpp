@@ -471,6 +471,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == sensorL && body2 == (PhysBody3D*)App->player->vehicle && lap == false)
 	{
 		lap = true;
+		App->audio->PlayFx(App->player->lapFx);
 		App->player->laps++;
 	}
 	if (body1 == sensorI && body2 == (PhysBody3D*)App->player->vehicle)
