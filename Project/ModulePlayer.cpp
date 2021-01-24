@@ -20,6 +20,10 @@ bool ModulePlayer::Start()
 	timer2.Start();
 	VehicleInfo car;
 
+	App->audio->PlayMusic("../Assets/Music/racingMusic.ogg", 0.2f);
+	lostFx = App->audio->LoadFx("../Assets/Fx/noTimeFx.wav");
+	winFx = App->audio->LoadFx("../Assets/Fx/wonGame.wav");
+
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 0.75, 4);
 	car.chassis_offset.Set(0, 1, 0);
@@ -151,6 +155,7 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+
 	turn = acceleration = brake = 0.0f;
 
 	//vehicle->
@@ -292,6 +297,8 @@ update_status ModulePlayer::Update(float dt)
 		}
 		if (vehicle->GetKmh() != 0)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
+
+		App->audio->PlayFx(lostFx);
 	}
 	if (laps == 4)
 	{
@@ -305,6 +312,8 @@ update_status ModulePlayer::Update(float dt)
 		}
 		if (vehicle->GetKmh() != 0)
 			vehicle->body->setLinearVelocity({ 0,0,0 });
+
+		App->audio->PlayFx(winFx);
 	}
 	if (laps >= 1)
 	{
