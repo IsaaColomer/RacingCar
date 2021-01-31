@@ -32,7 +32,7 @@ public:
 	int laps = 0;
 	Timer timer;
 	Timer timer2;
-	float iniTime = 200;
+	float iniTime = 400;
 	float totalTime = 0;
 
 	uint winFx = 0;
